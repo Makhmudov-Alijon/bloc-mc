@@ -20,12 +20,14 @@ class GameDataBloc extends Bloc<GameDataEvent, GameDataState> {
     on<GameDataEvent>((event, emit) async {
       if (event is LoadGameDataEvent) {
         emit(GameDataLoadingState());
+        List<BannersModel> bannerlist=[];
         NewExamMap? apiResult = (await  restClient.getGame());
         BannersModel? apiBanner=await restClient.getBanner();
         ExamCategoryModel2 apiCategory=await restClient.getCategory();
         if (apiResult == null || apiBanner ==null ||apiCategory==null) {
           emit(GameDataErrorState());
         } else {
+          bannerlist.add(apiBanner);
           emit(GameDataLoadedState(apiResult: apiResult,apiBanner: apiBanner,apiCategory: apiCategory));
           print('data keldi');
         }

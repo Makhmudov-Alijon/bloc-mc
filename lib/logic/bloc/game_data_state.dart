@@ -2,6 +2,8 @@
 
 part of 'game_data_bloc.dart';
 
+
+
 abstract class GameDataState extends Equatable {
   const GameDataState();
 

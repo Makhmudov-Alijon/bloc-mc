@@ -14,9 +14,6 @@ class ChildBloc extends Bloc<ChildEvent, ChildState> {
     on<ChildEvent>((event, emit) async{
       if (event is LoadChildDataEvent) {
         emit(ChildDataLoadingState());
-      //   NewExamMap? apiResult = (await  restClient.getGame());
-      // BannersModel? apiBanner=await restClient.getBanner();
-      // ExamCategoryModel2 apiCategory=await restClient.getCategory();
         CategoryChildItem apiCategoryChild=await restClient.getCategoryChildItem(event.id!);
       if (apiCategoryChild==null) {
       emit(ChildDataErrorState());
